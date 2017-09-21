@@ -13,7 +13,7 @@ before_install:
 
 install: 
   - npm install
-  - apt-get install sshpass
+  - sudo apt-get install sshpass
   - docker build -t ${TRAVIS_COMMIT} .
 
 script: 
