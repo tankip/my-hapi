@@ -17,4 +17,4 @@ install:
 
 script: 
   - docker run -d --name ${TRAVIS_COMMIT} ${TRAVIS_COMMIT}  
-  - docker ps 
+  - docker-machine ip 
