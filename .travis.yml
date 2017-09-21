@@ -13,8 +13,8 @@ before_install:
 
 install: 
   - npm install
+  - apt-get install sshpass
   - docker build -t ${TRAVIS_COMMIT} .
 
 script: 
-  - docker run -d --name ${TRAVIS_COMMIT} ${TRAVIS_COMMIT}  
-  - docker-machine ip 
+  - docker save ${TRAVIS_COMMIT} | sshpass -p vel94vin ssh -C rtanui@10.50.80.240 sudo docker load
