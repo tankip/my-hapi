@@ -2,9 +2,18 @@ language: node_js
 
 node_js: "6"
 
-sudo: false
+sudo: required
 
-install: npm install
+services:
+  - docker
 
-script:
-  - echo "no tests!"
+before_install:
+  - docker --version
+  - echo "ENV GIT_SHA ${TRAVIS_COMMIT}" >> Dockerfile
+
+install: 
+  - npm install
+  - docker build -t ${TRAVIS_COMMIT} .
+
+script: 
+  - docker run -d --name ${TRAVIS_COMMIT} ${TRAVIS_COMMIT}  
