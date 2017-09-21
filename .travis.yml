@@ -5,3 +5,6 @@ node_js: "6"
 sudo: false
 
 install: npm install
+
+script:
+  - echo "no tests!"
