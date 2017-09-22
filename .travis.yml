@@ -16,5 +16,5 @@ install:
   - docker build -t ${TRAVIS_BRANCH} .
 
 script: 
-  - docker run -d --name ${TRAVIS_BRANCH} ${BRANCH}
+  - docker run -d --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
   - docker ps
