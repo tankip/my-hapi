@@ -14,9 +14,9 @@ before_install:
 
 install: 
   - npm install
-  - docker build -t $TRAVIS_BRANCH .
+  - docker build -t ${TRAVIS_BRANCH} .
 
 script: 
   - docker images
-  - docker run -d --name $TRAVIS_BRANCH $TRAVIS_BRANCH
+  - docker run -d --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
   - docker ps
