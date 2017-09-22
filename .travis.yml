@@ -9,11 +9,12 @@ services:
 
 before_install:
   - docker --version
-  - echo "ENV GIT_SHA ${TRAVIS_COMMIT}" >> Dockerfile
+  - echo "ENV GIT_SHA ${TRAVIS_BRANCH}" >> Dockerfile
 
 install: 
   - npm install
-  - docker build -t ${TRAVIS_COMMIT} .
+  - docker build -t ${TRAVIS_BRANCH} .
 
 script: 
-  - docker run -d --name ${TRAVIS_COMMIT} ${TRAVIS_COMMIT}
+  - docker run -d --name ${TRAVIS_BRANCH} ${BRANCH}
+  - docker ps
