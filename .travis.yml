@@ -15,7 +15,9 @@ install:
   - npm install
 
 script: 
-  - echo "Hello World"
+  - docker images
+  - docker run -d --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
+  - docker ps
 
 after_success:
   - tar -czf build.tgz $TRAVIS_BRANCH
@@ -23,6 +25,3 @@ after_success:
   - sshpass -e scp -o stricthostkeychecking=no build.tgz $DEPLOY_USER@$DEPLOY_HOST:./
   - sshpass -e ssh -o stricthostkeychecking=no $DEPLOY_USER@$DEPLOY_HOST ./deploy-build.sh
   - docker build -t ${TRAVIS_BRANCH} .
-  - docker images
-  - docker run -d --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
-  - docker ps
