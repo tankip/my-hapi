@@ -13,6 +13,5 @@ script:
 after_success:
   - tar -czf build.tgz $TRAVIS_BRANCH
   - export SSHPASS=$DEPLOY_PASS
-  - sshpass -e scp -o stricthostkeychecking=no build.tgz $DEPLOY_USER@$DEPLOY_HOST:/home/rtanui
+  - sshpass -e scp build.tgz $DEPLOY_USER@$DEPLOY_HOST:/home/rtanui
   - sshpass -e ssh -o stricthostkeychecking=no $DEPLOY_USER@$DEPLOY_HOST
-  - cp build.tgz /home/rtanui
