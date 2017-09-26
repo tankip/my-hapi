@@ -21,4 +21,4 @@ after_success:
   - export SSHPASS=$DEPLOY_PASS
   - sshpass -e scp -o stricthostkeychecking=no build.tgz $DEPLOY_USER@$DEPLOY_HOST:./
   - sshpass -e ssh -o stricthostkeychecking=no $DEPLOY_USER@$DEPLOY_HOST
-  - cp build.tgz /rtanui
+  - cp build.tgz /home/rtanui
