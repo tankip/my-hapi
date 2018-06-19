@@ -6,7 +6,6 @@ sudo: required
 
 services:
   - docker
-  - sshpass
 
 before_install:
   - docker --version
@@ -14,9 +13,12 @@ before_install:
 
 install: 
   - npm install
-  - docker build -t ${TRAVIS_BRANCH} .
 
 script: 
+  - npm test
+
+  
+after_success:
+  - echo "BUILD IMAGE"
+  - docker build -t ${TRAVIS_BRANCH} .
   - docker images
-  - docker run -d --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
-  - docker ps
