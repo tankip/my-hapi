@@ -10,16 +10,16 @@ services:
 before_install:
   - docker --version
   - echo "ENV GIT_SHA ${TRAVIS_BRANCH}" >> Dockerfile
+  - docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
 install: 
   - npm install
 
 script: 
   - docker images
-
   
 after_success:
   - echo "BUILD IMAGE"
   - docker build -t ${TRAVIS_BRANCH} .
-  - docker run -d --add-host=uprade1:10.50.80.115 --name ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
+  - docker push $DOCKER_USERNAME/my-hapi:${TRAVIS_BRANCH}
   - docker images
