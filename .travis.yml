@@ -20,6 +20,6 @@ script:
   
 after_success:
   - echo "BUILD IMAGE"
-  - docker build -t $DOCKER_USERNAME/my-hapi:${TRAVIS_BRANCH} .
-  - docker push $DOCKER_USERNAME/my-hapi:${TRAVIS_BRANCH}
+  - docker build -t ${TRAVIS_BRANCH} .
+  - docker push $DOCKER_USERNAME/my-hapi/${TRAVIS_BRANCH}:latest
   - docker images
